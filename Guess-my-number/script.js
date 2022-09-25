@@ -11,5 +11,10 @@
 let btnCheck = document.querySelector('.check');
 
 btnCheck.addEventListener('click', function () {
-  console.log(document.querySelector('.guess').value);
+  const guess = document.querySelector('.guess').value;
+  if (!guess) {
+    document.querySelector('.message').textContent = '🚫 No Number';
+  } else {
+    console.log(guess);
+  }
 });
