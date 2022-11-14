@@ -40,6 +40,9 @@ const game = {
     team2: 6.5,
   },
 };
+
+// Coding challange 1
+
 // 1
 const [players1, players2] = game.players;
 
@@ -71,14 +74,50 @@ const { team1, x: draw, team2 } = game.odds;
 
 // 6
 
-const printGoals = (...players) => {
-  console.log(`${players.length} goal were scored`);
-};
+// const printGoals = (...players) => {
+//   console.log(`${players.length} goal were scored`);
+// };
 
 // printGoals('Davies', 'Muller', 'Kimmich', 'Lewandowski');
 // printGoals('Davies', 'Lewandowski');
 // printGoals(...game.scored);
 
 // 7
-team1 < team2 && console.log('Team 1 is more likely to win');
-team1 > team2 && console.log('Team 2 is more likely to win');
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// team1 > team2 && console.log('Team 2 is more likely to win');
+
+// Coding challange 2
+
+// 1
+
+// for (const [goal, player] of game.scored.entries()) {
+//   console.log(`Goal ${goal + 1}: ${player}`);
+// }
+
+// 2
+
+// let average = 0;
+// for (const odd of Object.values(game.odds)) {
+//   average += odd;
+// }
+// average /= Object.values(game.odds).length;
+
+// console.log(average);
+
+// 3
+
+// for (const [team, score] of Object.entries(game.odds)) {
+//   console.log(
+//     `\tOdd of${game[team] ? ' victory' : ''} ${game[team] || 'draw'} ${score}`
+//   );
+// }
+
+// 4 Bonus
+
+const scores = {};
+
+for (const [score, player] of game.scored.entries()) {
+  scores[player] ? (scores[player] = 2) : (scores[player] = 1);
+}
+
+// console.log(scores);
