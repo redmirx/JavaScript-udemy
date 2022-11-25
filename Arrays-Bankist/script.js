@@ -74,3 +74,9 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Array methods
+
+// let arr = [1,2,3,4,5]
+// The alternative of arr[arr.length -1] is at method which released at 2022 -> arr.at(-1)
+// This method is also works on strings: For example 'hello'.at(0), which returns the last letter.
