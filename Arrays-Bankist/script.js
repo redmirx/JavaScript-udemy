@@ -80,3 +80,22 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // let arr = [1,2,3,4,5]
 // The alternative of arr[arr.length -1] is at method which released at 2022 -> arr.at(-1)
 // This method is also works on strings: For example 'hello'.at(0), which returns the last letter.
+
+// LEC
+
+const displayMovements = function (movements) {};
+containerMovements.innerHTML = '';
+movements.forEach((value, index) => {
+  const type = value > 0 ? 'deposit' : 'withdrawal';
+  const html = `
+  <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+    index + 1
+  } ${type}</div>
+          <div class="movements__value">${value}€ </div>
+        </div>
+  `;
+  containerMovements.insertAdjacentHTML('afterbegin', html);
+});
+
+displayMovements(account1.movements);
