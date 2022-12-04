@@ -98,4 +98,15 @@ movements.forEach((value, index) => {
   containerMovements.insertAdjacentHTML('afterbegin', html);
 });
 
+const createUsername = accounts => {
+  accounts.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name.at(0))
+      .join('');
+  });
+};
+createUsername(accounts);
+console.log(accounts);
 displayMovements(account1.movements);
