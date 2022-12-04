@@ -98,6 +98,13 @@ movements.forEach((value, index) => {
   containerMovements.insertAdjacentHTML('afterbegin', html);
 });
 
+const calcDisplayBalance = movements => {
+  const balance = movements.reduce((acc, cur) => acc + cur, 0);
+  labelBalance.textContent = `${balance}$`;
+};
+
+calcDisplayBalance(account1.movements);
+
 const createUsername = accounts => {
   accounts.forEach(acc => {
     acc.username = acc.owner
@@ -108,5 +115,18 @@ const createUsername = accounts => {
   });
 };
 createUsername(accounts);
-console.log(accounts);
 displayMovements(account1.movements);
+
+const deposits = movements.filter(value => value > 0);
+const withdrawals = movements.filter(value => value < 0);
+// console.log(deposits);
+// console.log(withdrawals);
+
+const balance = movements.reduce((acc, value) => acc + value, 0);
+// console.log(balance);
+
+const max = movements.reduce(
+  (acc, mov) => (acc < mov ? (acc = mov) : acc),
+  movements.at(0)
+);
+console.log(max);
