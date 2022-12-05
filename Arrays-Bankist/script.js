@@ -63,7 +63,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// LECTURES
 
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -72,16 +71,6 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-
-// Array methods
-
-// let arr = [1,2,3,4,5]
-// The alternative of arr[arr.length -1] is at method which released at 2022 -> arr.at(-1)
-// This method is also works on strings: For example 'hello'.at(0), which returns the last letter.
-
-// LEC
 
 const displayMovements = function (movements) {};
 containerMovements.innerHTML = '';
@@ -136,16 +125,31 @@ const createUsername = accounts => {
 createUsername(accounts);
 displayMovements(account1.movements);
 
-const deposits = movements.filter(value => value > 0);
-const withdrawals = movements.filter(value => value < 0);
+// Event hadlers
+
+btnLogin.addEventListener('click', e => {
+  e.preventDefault();
+  console.log('login');
+});
+
+LEC;
+
+/////////////////////////////////////////////////
+
+// Array methods
+
+// let arr = [1,2,3,4,5]
+// The alternative of arr[arr.length -1] is at method which released at 2022 -> arr.at(-1)
+// This method is also works on strings: For example 'hello'.at(0), which returns the last letter.
+
+// const deposits = movements.filter(value => value > 0);
 // console.log(deposits);
+// const withdrawals = movements.filter(value => value < 0);
 // console.log(withdrawals);
-
-const balance = movements.reduce((acc, value) => acc + value, 0);
+// const balance = movements.reduce((acc, value) => acc + value, 0);
 // console.log(balance);
-
-const max = movements.reduce(
-  (acc, mov) => (acc < mov ? (acc = mov) : acc),
-  movements.at(0)
-);
+// const max = movements.reduce(
+//   (acc, mov) => (acc < mov ? (acc = mov) : acc),
+//   movements.at(0)
+// );
 // console.log(max);
