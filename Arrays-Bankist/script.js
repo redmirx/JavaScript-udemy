@@ -127,9 +127,15 @@ displayMovements(account1.movements);
 
 // Event hadlers
 
+let currentAccount;
+
 btnLogin.addEventListener('click', e => {
+  // Prevent from the submitting
   e.preventDefault();
-  console.log('login');
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
 });
 
 LEC;
