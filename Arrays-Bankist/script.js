@@ -72,6 +72,8 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// Displaying movements
+
 const displayMovements = function (movements) {};
 containerMovements.innerHTML = '';
 movements.forEach((value, index) => {
@@ -87,32 +89,34 @@ movements.forEach((value, index) => {
   containerMovements.insertAdjacentHTML('afterbegin', html);
 });
 
+// Calculating total balance
+
 const calcDisplayBalance = movements => {
   const balance = movements.reduce((acc, cur) => acc + cur, 0);
   labelBalance.textContent = `${balance}$`;
 };
+// Calculating the summary
 
-calcDisplayBalance(account1.movements);
-
-const calcDisplaySummary = movements => {
-  const incomes = movements
+const calcDisplaySummary = acc => {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}$`;
 
-  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov);
+  const out = acc.movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov);
   labelSumOut.textContent = `${Math.abs(out)}$`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter(interst => interst >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}$`;
 };
 
-calcDisplaySummary(account1.movements);
-
+// Creating username
 const createUsername = accounts => {
   accounts.forEach(acc => {
     acc.username = acc.owner
@@ -123,7 +127,6 @@ const createUsername = accounts => {
   });
 };
 createUsername(accounts);
-displayMovements(account1.movements);
 
 // Event hadlers
 
@@ -136,9 +139,31 @@ btnLogin.addEventListener('click', e => {
     acc => acc.username === inputLoginUsername.value
   );
   console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI message
+    labelWelcome.textContent = `Welcome ${currentAccount.owner
+      .split(' ')
+      .at(0)} `;
+
+    containerApp.style.opacity = 100;
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+
+    // Clear input field
+
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+  }
 });
 
-LEC;
+// LEC;
 
 /////////////////////////////////////////////////
 
